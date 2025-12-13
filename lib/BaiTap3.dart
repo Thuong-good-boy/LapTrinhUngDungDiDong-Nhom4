@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class BaiTap3 extends StatefulWidget {
   const BaiTap3({super.key});
 
@@ -35,7 +36,14 @@ class _BaiTap3State extends State<BaiTap3> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Ứng dụng Đếm số"),
+        title: const Text(
+          "Ứng Dụng Đếm Số",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+        ),
         backgroundColor: Colors.blue,
         centerTitle: true,
       ),
@@ -63,35 +71,56 @@ class _BaiTap3State extends State<BaiTap3> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-                    textStyle:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 25,
+                      vertical: 15,
+                    ),
+                    textStyle: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   onPressed: _decreaseNumber,
-                  child: const Text("Giảm"),
+                  child: const Text(
+                    "Giảm",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.grey,
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-                    textStyle:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 25,
+                      vertical: 15,
+                    ),
+                    textStyle: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   onPressed: _resetNumber,
-                  child: const Text("Đặt lại"),
+                  child: const Text(
+                    "Đặt lại",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-                    textStyle:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 25,
+                      vertical: 15,
+                    ),
+                    textStyle: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   onPressed: _increaseNumber,
-                  child: const Text("Tăng"),
+                  child: const Text(
+                    "Tăng",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ],
             ),

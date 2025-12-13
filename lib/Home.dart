@@ -11,9 +11,7 @@ class UserProfileScreen extends StatelessWidget {
 
   // --- HÀM XỬ LÝ ĐĂNG XUẤT ---
   void _handleLogout(BuildContext context) async {
-    // Bước 1: Xóa token (Nếu bạn có dùng SharedPreferences để lưu đăng nhập)
-    // Nếu chỉ truyền dữ liệu qua lại giữa các màn hình thì bước này có thể bỏ qua,
-    // nhưng mình viết sẵn để sau này bạn dùng.
+
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.remove('token'); // Xóa token đã lưu
@@ -38,14 +36,7 @@ class UserProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Thông tin User"),
         backgroundColor: Colors.green,
-        actions: [
-          // Cách 1: Nút đăng xuất nhỏ trên góc phải
-          IconButton(
-            onPressed: () => _handleLogout(context),
-            icon: const Icon(Icons.logout),
-            tooltip: 'Đăng xuất',
-          )
-        ],
+
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -69,12 +60,13 @@ class UserProfileScreen extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            // Cách 2: Nút Đăng xuất to rõ ràng ở dưới cùng
             SizedBox(
-              width: double.infinity, // Full chiều ngang
+              width: double.infinity,
               height: 50,
               child: ElevatedButton.icon(
-                onPressed: () => _handleLogout(context),
+                onPressed: (){
+                  Navigator.pop(context);
+                },
                 icon: const Icon(Icons.logout, color: Colors.white),
                 label: const Text("Đăng xuất",
                     style: TextStyle(color: Colors.white, fontSize: 18)),
