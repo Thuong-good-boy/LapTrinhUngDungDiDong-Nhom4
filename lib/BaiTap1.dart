@@ -57,7 +57,7 @@ class BaiTap1 extends StatelessWidget {
 
   Widget item(Course course) {
     return Container(
-      height: 120,
+      height: 130,
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 10),
       decoration: BoxDecoration(
