@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learn2110/BaiTap1.dart';
-import 'package:learn2110/BaiTap2.dart';
-import 'package:learn2110/BaiTap3.dart';
-import 'package:learn2110/BaiTap4.dart';
-import 'package:learn2110/BaiTap5.dart';
-import 'package:learn2110/BaiTap6.dart';
-import 'package:learn2110/BaiTap7.dart';
-import 'package:learn2110/BaiTap8.dart';
-import 'package:learn2110/BaiTap9.dart';
-import 'package:learn2110/BaiTap10.dart';
-import 'package:learn2110/BaiTap11.dart';
 import 'package:learn2110/PhanAnhThuong.dart';
+import 'package:learn2110/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,16 +11,42 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Phananhthuong(),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: ThemeManager.themeNotifier,
+      builder: (_, mode, __) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Bài Tập Flutter',
+          themeMode: mode,
+          theme: ThemeData(
+            brightness: Brightness.light,
+            primarySwatch: Colors.blue,
+            scaffoldBackgroundColor: Colors.white,
+            appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.blue,
+              titleTextStyle: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              iconTheme: IconThemeData(color: Colors.white),
+            ),
+          ),
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            primarySwatch: Colors.blue,
+            scaffoldBackgroundColor: const Color(0xFF121212),
+            appBarTheme: const AppBarTheme(
+              backgroundColor: Color(0xFF1F1F1F),
+              titleTextStyle: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              iconTheme: IconThemeData(color: Colors.white),
+            ),
+            elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blueGrey,
+                foregroundColor: Colors.white,
+              ),
+            ),
+          ),
+          home: const Phananhthuong(),
+        );
+      },
     );
   }
 }
-

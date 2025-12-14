@@ -14,75 +14,102 @@ class PhanAnhThuongSidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // Phần Header "Xịn sò" có Avatar và info
-        UserAccountsDrawerHeader(
-          decoration: BoxDecoration(
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    // Màu sắc dựa trên giao diện
+    final Color backgroundColor = isDarkMode ? const Color(0xFF1E1E1E) : Colors.white;
+    final Color textColor = isDarkMode ? Colors.white : Colors.black87;
+    final Color selectedItemColor = Colors.blue;
+    final Color unselectedItemColor = isDarkMode ? Colors.white70 : Colors.black87;
+    final Color selectedTileColor = isDarkMode ? Colors.blue.withOpacity(0.2) : Colors.blue.shade50;
+
+    return Container(
+      color: backgroundColor,
+      child: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(20.0),
             color: Colors.blue.shade800,
-          ),
-          accountName: const Text(
-            "Phan Anh Thương",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-          ),
-          accountEmail: const Text("22T1020756 - Nhóm 4"),
-          currentAccountPicture: const CircleAvatar(
-            backgroundColor: Colors.white,
-            child: Text(
-              "PA",
-              style: TextStyle(fontSize: 24, color: Colors.blue),
-            ),
-          ),
-        ),
-
-        // Danh sách cuộn
-        Expanded(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              // Nút về Trang Chủ
-              ListTile(
-                leading: const Icon(Icons.home),
-                title: const Text("Trang Chủ (Thông tin)"),
-                selected: selectedKey == 'Trang Chủ',
-                selectedTileColor: Colors.blue.shade100,
-                selectedColor: Colors.blue.shade900,
-                onTap: () => onSelect('Trang Chủ'),
-              ),
-              const Divider(),
-
-              // Danh sách các bài tập
-              ...assignments.map((key) {
-                final bool isActive = key == selectedKey;
-                return ListTile(
-                  leading: Icon(
-                    isActive ? Icons.folder_open : Icons.folder,
-                    color: isActive ? Colors.blue.shade800 : Colors.grey,
-                  ),
-                  title: Text(
-                    key,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 30),
+                const CircleAvatar(
+                  radius: 30,
+                  backgroundColor: Colors.white,
+                  child: Text(
+                    "PA",
                     style: TextStyle(
-                      fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
-                      color: isActive ? Colors.blue.shade900 : Colors.black87,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue,
                     ),
                   ),
-                  tileColor: isActive ? Colors.blue.shade50 : null,
-                  onTap: () => onSelect(key),
-                );
-              }).toList(),
-            ],
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  "Phan Anh Thường",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  "MSSV: 2110....",
+                  style: TextStyle(
+                    color: Colors.blue.shade100,
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
 
-        // Footer nhỏ (Tuỳ chọn)
-        const Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Text(
-            "Version 1.0 - App Mobile",
-            style: TextStyle(color: Colors.grey, fontSize: 12),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                ListTile(
+                  leading: Icon(
+                    Icons.home,
+                    color: selectedKey == 'Trang Chủ' ? selectedItemColor : unselectedItemColor,
+                  ),
+                  title: Text(
+                    "Trang Chủ",
+                    style: TextStyle(
+                      fontWeight: selectedKey == 'Trang Chủ' ? FontWeight.bold : FontWeight.normal,
+                      color: selectedKey == 'Trang Chủ' ? selectedItemColor : textColor,
+                    ),
+                  ),
+                  tileColor: selectedKey == 'Trang Chủ' ? selectedTileColor : null,
+                  onTap: () => onSelect('Trang Chủ'),
+                ),
+                const Divider(),
+                ...assignments.map((key) {
+                  final isSelected = key == selectedKey;
+                  return ListTile(
+                    leading: Icon(
+                      Icons.assignment,
+                      color: isSelected ? selectedItemColor : unselectedItemColor,
+                    ),
+                    title: Text(
+                      key,
+                      style: TextStyle(
+                        fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                        color: isSelected ? selectedItemColor : textColor,
+                      ),
+                    ),
+                    tileColor: isSelected ? selectedTileColor : null,
+                    onTap: () => onSelect(key),
+                  );
+                }),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

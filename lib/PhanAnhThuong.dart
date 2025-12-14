@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// Import các bài tập của bạn
 import 'package:learn2110/BaiTap1.dart';
 import 'package:learn2110/BaiTap10.dart';
 import 'package:learn2110/BaiTap11.dart';
@@ -13,21 +12,25 @@ import 'package:learn2110/BaiTap8.dart';
 import 'package:learn2110/BaiTap9.dart';
 import 'package:learn2110/PhanAnhThuongContent.dart';
 import 'package:learn2110/PhanAnhThuongSideBar.dart';
+import 'package:learn2110/Place.dart';
+import 'package:learn2110/my_home_page.dart';
+import 'package:learn2110/theme.dart';
 
-// Map ánh xạ bài tập
 final Map<String, Widget> assignmentWidgets = {
-  'Bài Tập 01': const BaiTap1(),
-  'Bài Tập 02': const BaiTap2(),
-  'Bài Tập 03': const BaiTap3(),
-  'Bài Tập 04': const BaiTap4(),
-  'Bài Tập 05': const BaiTap5(),
-  'Bài Tập 06': const BaiTap6(),
-  'Bài Tập 07': const BaiTap7(),
-  'Bài Tập 08': const BaiTap8(),
-  'Bài Tập 09': const BaiTap9(),
-  'Bài Tập 10': const MyProduct(),
-  'Bài Tập 11': const ListTinTuc(),
-  'Bài Tập 12': const BaiTap6(),
+  'Bài tập 01': const MyHomePage(),
+  'Bài tập 02': const MyPlace(),
+  'Bài Tập 03': const BaiTap1(),
+  'Bài Tập 04': const BaiTap2(),
+  'Bài Tập 05': const BaiTap3(),
+  'Bài Tập 06': const BaiTap4(),
+  'Bài Tập 07': const BaiTap5(),
+  'Bài Tập 08': const BaiTap6(),
+  'Bài Tập 09': const BaiTap7(),
+  'Bài Tập 10': const BaiTap8(),
+  'Bài Tập 11': const BaiTap9(),
+  'Bài Tập 12': const MyProduct(),
+  'Bài Tập 13': const ListTinTuc(),
+  'Bài Tập 14': const BaiTap6(),
 };
 
 class Phananhthuong extends StatefulWidget {
@@ -38,18 +41,15 @@ class Phananhthuong extends StatefulWidget {
 }
 
 class _PhananhthuongState extends State<Phananhthuong> {
-  // Mặc định là 'Trang Chủ'
   String _selectedAssignmentKey = 'Trang Chủ';
 
   void _selectAssignment(String key) {
     setState(() {
       _selectedAssignmentKey = key;
     });
-    // Đóng Sidebar sau khi chọn
     Navigator.of(context).pop();
   }
 
-  // Widget hiển thị nội dung
   Widget get _currentContent {
     if (_selectedAssignmentKey == 'Trang Chủ') {
       return const Phananhthuongcontent(assignmentName: 'Thông Tin Sinh Viên');
@@ -62,7 +62,6 @@ class _PhananhthuongState extends State<Phananhthuong> {
 
   @override
   Widget build(BuildContext context) {
-    // Biến kiểm tra xem có đang ở trang chủ không
     bool isHomePage = _selectedAssignmentKey == 'Trang Chủ';
 
     return Scaffold(
@@ -73,10 +72,6 @@ class _PhananhthuongState extends State<Phananhthuong> {
         ),
         backgroundColor: Colors.blue.shade800,
         foregroundColor: Colors.white,
-
-        // --- PHẦN SỬA ĐỔI QUAN TRỌNG ---
-        // Nếu là Trang Chủ: Để null -> Tự hiện nút Menu (3 gạch) để mở Sidebar
-        // Nếu là Bài Tập: Hiện nút Mũi Tên -> Bấm vào quay về Trang Chủ
         leading: isHomePage
             ? null
             : IconButton(
@@ -87,15 +82,25 @@ class _PhananhthuongState extends State<Phananhthuong> {
             });
           },
         ),
-        // -------------------------------
-
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 20.0),
+        actions: [
+          IconButton(
+            onPressed: () {
+              ThemeManager.toggleTheme();
+            },
+            icon: ValueListenableBuilder<ThemeMode>(
+              valueListenable: ThemeManager.themeNotifier,
+              builder: (_, mode, __) {
+                return Icon(
+                  mode == ThemeMode.light ? Icons.dark_mode : Icons.light_mode,
+                  color: Colors.white,
+                );
+              },
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(right: 20.0, left: 10),
             child: Row(
               children: [
-                // Text('Phan Anh Thương', style: TextStyle(fontSize: 14)), // Bỏ cmt nếu muốn hiện tên
-                // SizedBox(width: 10),
                 CircleAvatar(
                   backgroundColor: Colors.white,
                   child: Text('PA', style: TextStyle(color: Colors.blue)),
@@ -105,8 +110,6 @@ class _PhananhthuongState extends State<Phananhthuong> {
           ),
         ],
       ),
-
-      // Sidebar (Drawer) vẫn giữ nguyên logic
       drawer: Drawer(
         width: 300,
         child: PhanAnhThuongSidebar(
@@ -115,9 +118,8 @@ class _PhananhthuongState extends State<Phananhthuong> {
           onSelect: _selectAssignment,
         ),
       ),
-
       body: Container(
-        color: Colors.grey.shade50,
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: _currentContent,
       ),
     );
