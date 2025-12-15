@@ -1,5 +1,8 @@
 package com.example.learn2110
 
-import io.flutter.embedding.android.FlutterActivity
+// 1. Sửa dòng import thành FlutterFragmentActivity
+import io.flutter.embedding.android.FlutterFragmentActivity
 
-class MainActivity : FlutterActivity()
+// 2. Sửa class kế thừa từ FlutterFragmentActivity
+class MainActivity: FlutterFragmentActivity() {
+}

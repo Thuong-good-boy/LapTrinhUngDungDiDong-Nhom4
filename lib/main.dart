@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:learn2110/PhanAnhThuong.dart';
+import 'package:learn2110/services/constant.dart';
 import 'package:learn2110/theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = Publishablekey;
+
   runApp(const MyApp());
 }
 

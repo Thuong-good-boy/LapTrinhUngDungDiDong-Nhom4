@@ -49,7 +49,7 @@ class PhanAnhThuongSidebar extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 const Text(
-                  "Phan Anh Thường",
+                  "Phan Anh Thương",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -57,7 +57,7 @@ class PhanAnhThuongSidebar extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "MSSV: 2110....",
+                  "MSSV: 22T1020756",
                   style: TextStyle(
                     color: Colors.blue.shade100,
                     fontSize: 14,
