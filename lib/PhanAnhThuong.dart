@@ -17,20 +17,20 @@ import 'package:learn2110/my_home_page.dart';
 import 'package:learn2110/theme.dart';
 
 final Map<String, Widget> assignmentWidgets = {
-  'Bài tập 01': const MyHomePage(),
-  'Bài tập 02': const MyPlace(),
-  'Bài Tập 03': const BaiTap1(),
-  'Bài Tập 04': const BaiTap2(),
-  'Bài Tập 05': const BaiTap3(),
-  'Bài Tập 06': const BaiTap4(),
-  'Bài Tập 07': const BaiTap5(),
-  'Bài Tập 08': const BaiTap6(),
-  'Bài Tập 09': const BaiTap7(),
-  'Bài Tập 10': const BaiTap8(),
-  'Bài Tập 11': const BaiTap9(),
-  'Bài Tập 12': const MyProduct(),
-  'Bài Tập 13': const ListTinTuc(),
-  'Bài Tập 14': const BaiTap6(),
+  'Bài tập 01 : Hello World': const MyHomePage(),
+  'Bài tập 02 : Place': const MyPlace(),
+  'Bài Tập 03 : Khóa học': const BaiTap1(),
+  'Bài Tập 04 : Welcome': const BaiTap2(),
+  'Bài Tập 05 : Đếm số': const BaiTap3(),
+  'Bài Tập 06 : Đếm giây': const BaiTap4(),
+  'Bài Tập 07 : Đổi màu': const BaiTap5(),
+  'Bài Tập 08 : Đăng nhập': const BaiTap6(),
+  'Bài Tập 09 : Đăng Ký': const BaiTap7(),
+  'Bài Tập 10 : Tính BMI': const BaiTap8(),
+  'Bài Tập 11 : Phản hồi': const BaiTap9(),
+  'Bài Tập 12 : Sản Phẩm': const MyProduct(),
+  'Bài Tập 13 : Tin Tức': const ListTinTuc(),
+  'Bài Tập 14 : Đăng nhập theo API': const BaiTap6(),
 };
 
 class Phananhthuong extends StatefulWidget {
